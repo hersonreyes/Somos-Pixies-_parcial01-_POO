@@ -46,7 +46,6 @@ abstract class Empleado {
     }
 
     public void removeDocument(String numero){
-        System.out.println("Ingrese el numero de documento a eliminar");
             Documento aux = null;
 
             for(Documento empleado : doc){
