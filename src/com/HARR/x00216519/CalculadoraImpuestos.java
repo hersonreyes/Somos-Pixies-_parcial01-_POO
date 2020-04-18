@@ -5,10 +5,7 @@ public final class CalculadoraImpuestos {
     private double totalISSS = 0;
     private double totalAFP = 0;
 
-    private CalculadoraImpuestos(double totalRenta, double totalISSS, double totalAFP) {
-        this.totalRenta = totalRenta;
-        this.totalISSS = totalISSS;
-        this.totalAFP = totalAFP;
+    private CalculadoraImpuestos() {
     }
 
     public double calcularPago(Empleado empleado) {
