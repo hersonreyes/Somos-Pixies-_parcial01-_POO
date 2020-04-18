@@ -1,8 +1,137 @@
 package com.HARR.x00216519;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+	Empresa e=new Empresa("Almacenes Paola");
+	byte op=0;
+	Scanner scan = new Scanner(System.in);
+	do{
+        System.out.println("1) Anadir empleado\n2) Despedir empleado\n3) Ver lista de empleados\n" +
+                "4) Calcular sueldo\n5) Mostrar totales\n0) salir");
+        op=scan.nextByte();scan.nextLine();
+	    switch (op){
+            case 1:{
+                 String nombre;
+                 String puesto;
+                 double salario;
+                 int mesesContrato,extension;
+
+                try{
+                    byte opdoc=0;
+                    System.out.println("Digite una opcion\n1) Servicio Profesional\n2) Plaza fija");
+                    int op3=scan.nextByte();scan.nextLine();
+                    if(op3==1){
+                        System.out.println("Digite el nombre del empleado");
+                        nombre=scan.nextLine();
+                        System.out.println("Digite el puesto del empleado");
+                        puesto=scan.nextLine();
+                        System.out.println("Digite el salario");
+                        salario=scan.nextDouble();scan.nextLine();
+                        System.out.println("Digite los meses de contrato");
+                        mesesContrato=scan.nextByte();scan.nextLine();
+                        e.addEmpleado(new ServicioProfesional(nombre,puesto,salario,mesesContrato));
+                        ArrayList<Empleado>emp=e.getPlanilla();
+                        for (Empleado x:
+                                emp) {
+                            if(x.nombre==nombre) {
+                                do {
+                                    x.addDocumento();
+                                    System.out.println("Digite 0 para dejar de anadir documentos ");
+                                    opdoc=scan.nextByte();scan.nextLine();
+                                } while(opdoc!=0);
+                            }
+
+                        }
+                    }
+                    else if (op3==2){
+                        System.out.println("Digite el nombre del empleado");
+                        nombre=scan.nextLine();
+                        System.out.println("Digite el puesto del empleado");
+                        puesto=scan.nextLine();
+                        System.out.println("Digite el salario");
+                        salario=scan.nextDouble();scan.nextLine();
+                        System.out.println("Digite la extension del empleado");
+                        extension=scan.nextByte();scan.nextLine();
+                        e.addEmpleado(new ServicioProfesional(nombre,puesto,salario,extension));
+                        ArrayList<Empleado>emp=e.getPlanilla();
+                        for (Empleado x:
+                                emp) {
+                            if(x.nombre==nombre) {
+                                System.out.println("Para dejar de anadir documentos presione 0");
+                                do {
+                                    x.addDocumento();
+                                    System.out.println("Su eleccion: ");
+                                    opdoc=scan.nextByte();scan.nextLine();
+                                } while(opdoc!=0);
+                            }
+
+                        }
+
+                    }
+
+                    else throw new IncorrectOption("Opcion no valida");
+                }
+
+                catch(IncorrectOption ex){
+                    System.out.println(ex);}
+                    break;
+                }
+
+            case 2: {
+                System.out.println("Ingrese el nombre del empleado a eliminar");
+                String nombre= scan.nextLine();
+                e.quitEmpleado(nombre);
+                break;
+            }
+
+            case 3:{
+                ArrayList<Empleado>emp=e.getPlanilla();
+                for (Empleado x:
+                     emp) {
+                    System.out.println("Nombre: "+x.nombre);
+                    System.out.println("Salario: "+x.salario);
+                    for(Documento doc: x.getDoc()){
+                        System.out.println("Nombre del Documento: "+doc.getNombre());
+                        System.out.println("Numero de Documento: "+doc.getNumero());
+                    }
+                    if(x instanceof ServicioProfesional) System.out.println("Servicio Profesional\n");
+                    else if(x instanceof PlazaFija) System.out.println("Plaza Fija\n");
+                }
+                break;
+
+            }
+
+            case 4: {
+              /*  try{
+                    ArrayList<Empleado>emp=e.getPlanilla();
+                    System.out.println("Ingrese el nombre del empleado que desea saber su sueldo liquido");
+                    String nombre=scan.nextLine();
+                    for (Empleado empleado:
+                         emp) {
+                        if(empleado.nombre.equalsIgnoreCase(nombre));
+
+                    }
+
+                }
+
+                catch(){};
+                */
+
+            }
+
+            case 5: {}
+
+
+        }
+
+    }while(op!=0);
+
 
     }
 }
