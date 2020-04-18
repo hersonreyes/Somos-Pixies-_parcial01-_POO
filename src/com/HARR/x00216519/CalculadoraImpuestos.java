@@ -17,11 +17,11 @@ public final class CalculadoraImpuestos {
             if (restante >= 0.01 && restante < 472) {
                 totalRenta = 0;
             } else if (restante >= 472 && restante < 895.24) {
-                totalRenta = 0.1 * (restante - 472) + 17.75;
+                totalRenta = 0.1 * (restante - 472) + 17.67;
             } else if (restante >= 895.24 && restante < 2038.10) {
                 totalRenta = 0.2 * (restante - 895.24) + 60;
             } else if (restante >= 2038.10) {
-                totalRenta = 0.2 * (restante - 2038.10) + 288.57;
+                totalRenta = 0.3 * (restante - 2038.10) + 288.57;
             }
         }else if (empleado instanceof ServicioProfesional){
             totalRenta = 0.1*empleado.getSalario();
@@ -38,11 +38,11 @@ public final class CalculadoraImpuestos {
             if (restante >= 0.01 && restante < 472) {
                 totalRenta = 0;
             } else if (restante >= 472 && restante < 895.24) {
-                totalRenta = 0.1 * (restante - 472) + 17.75;
+                totalRenta = 0.1 * (restante - 472) + 17.67;
             } else if (restante >= 895.24 && restante < 2038.10) {
                 totalRenta = 0.2 * (restante - 895.24) + 60;
             } else if (restante >= 2038.10) {
-                totalRenta = 0.2 * (restante - 2038.10) + 288.57;
+                totalRenta = 0.3 * (restante - 2038.10) + 288.57;
             }
         }else if (empleado instanceof ServicioProfesional){
             totalRenta = 0.1*empleado.getSalario();
