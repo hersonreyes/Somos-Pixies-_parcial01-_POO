@@ -1,14 +1,14 @@
 package com.HARR.x00216519;
 
 public final class CalculadoraImpuestos {
-    private double totalRenta = 0;
-    private double totalISSS = 0;
-    private double totalAFP = 0;
+    private static double totalRenta = 0;
+    private static double totalISSS = 0;
+    private static double totalAFP = 0;
 
     private CalculadoraImpuestos() {
     }
 
-    public double calcularPago(Empleado empleado) {
+    public static double calcularPago(Empleado empleado) {
         double restante = empleado.getSalario();
         if (empleado instanceof PlazaFija) {
             totalAFP = 0.0625 * empleado.getSalario();
@@ -29,7 +29,7 @@ public final class CalculadoraImpuestos {
             return restante-totalRenta;
         }
 
-    public String mostrarTotales(Empleado empleado){
+    public static String mostrarTotales(Empleado empleado){
         double restante = empleado.getSalario();
         if (empleado instanceof PlazaFija) {
             totalAFP = 0.0625 * empleado.getSalario();
