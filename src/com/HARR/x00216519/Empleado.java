@@ -6,14 +6,14 @@ import java.util.Scanner;
 abstract class Empleado {
     protected String nombre;
     protected String puesto;
-    protected ArrayList<Documento> doc;
+    protected ArrayList<Documento>doc;
     protected double salario;
 
     public Empleado(String nombre, String puesto, double salario) {
         this.nombre = nombre;
         this.puesto = puesto;
         this.salario = salario;
-        ArrayList<Documento> doc=new ArrayList<Documento>();
+       doc=new ArrayList<>();
     }
     Scanner scan=new Scanner(System.in);
 
