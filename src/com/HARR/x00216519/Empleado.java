@@ -37,11 +37,13 @@ abstract class Empleado {
         this.salario = salario;
     }
 
-    public void addDocumento(){
+    public void addDocumento() throws ExistingName {
         System.out.println("Ingrese nombre del documento");
         String nombre=scan.nextLine();
         System.out.println("Ingrese numero del documento");
         String numero=scan.nextLine();
+        for(Documento docs:doc)
+            if(docs.getNumero().equalsIgnoreCase(numero)) throw new ExistingName("Nombre ya existente");
         doc.add(new Documento(nombre,numero));
     }
 
@@ -56,5 +58,7 @@ abstract class Empleado {
                 doc.remove(aux);
             }
         }
+
+        public int getExtension(){return 0;};
     }
 
