@@ -34,6 +34,8 @@ public class Empresa {
         }
         if(aux != null) {
             planilla.remove(aux);
+        }else{
+            System.out.println("Este empleado no existe");
         }
     }
 
