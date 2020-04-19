@@ -1,7 +1,5 @@
 package com.HARR.x00216519;
 
-import sun.awt.image.ImageAccessException;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,6 +13,7 @@ public class Main {
         try {
             Empresa e = new Empresa("Almacenes Paola");
             int op = 0;
+            if(op==0) continuar=false;
             do {
                 System.out.println("1) Anadir empleado\n2) Despedir empleado\n3) Ver lista de empleados\n" +
                         "4) Calcular sueldo\n5) Mostrar totales\n0) salir");
