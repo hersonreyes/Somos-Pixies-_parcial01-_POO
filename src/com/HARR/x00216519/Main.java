@@ -11,6 +11,7 @@ public class Main {
         boolean continuar=true;
         do{
         try {
+            //el sueldo minimo de la empresa es $300
             Empresa e = new Empresa("Almacenes Paola");
             int op = 0;
             if(op==0) continuar=false;
@@ -39,8 +40,12 @@ public class Main {
                                 System.out.println("Digite el salario");
                                 salario = scan.nextDouble();
                                 scan.nextLine();
+                                if(salario<300)
+                                    throw new IncorrectNumbers("El sueldo minimo son $300");
                                 System.out.println("Digite los meses de contrato");
                                 mesesContrato = scan.nextByte();
+                                if(mesesContrato<=0) throw new  IncorrectNumbers("Los meses de contrato " +
+                                        "tienen que ser mayor a 0");
                                 scan.nextLine();
                                 e.addEmpleado(new ServicioProfesional(nombre, puesto, salario, mesesContrato));
                                 ArrayList<Empleado> emp = e.getPlanilla();
@@ -54,7 +59,6 @@ public class Main {
                                             scan.nextLine();
                                         } while (opdoc != 0);
                                     }
-
                                 }
                             } else if (op3 == 2) {
                                 System.out.println("Digite el nombre del empleado");
@@ -63,6 +67,8 @@ public class Main {
                                 puesto = scan.nextLine();
                                 System.out.println("Digite el salario");
                                 salario = scan.nextDouble();
+                                if(salario<300)
+                                    throw new IncorrectNumbers("El sueldo minimo son $300");
                                 scan.nextLine();
                                 ArrayList<Empleado> emp = e.getPlanilla();
                                 System.out.println("Digite la extension del empleado");
@@ -82,7 +88,6 @@ public class Main {
                                             scan.nextLine();
                                         } while (opdoc != 0);
                                     }
-
                                 }
                             } else throw new IncorrectOption("Opcion no valida");
                         } catch (InputMismatchException ex) {
@@ -94,6 +99,8 @@ public class Main {
                             System.out.println(existingName.getMessage());
                         } catch (ExistingNumber existingNumber) {
                             System.out.println(existingNumber.getMessage());
+                        } catch (IncorrectNumbers incorrectNumbers) {
+                            System.out.println(incorrectNumbers.getMessage());
                         }
                         break;
                     }
@@ -130,8 +137,9 @@ public class Main {
                             Empleado aux = null;
 
                             for (Empleado empleado : emp) {
-                                if (empleado.getNombre().equalsIgnoreCase(nombre))
-                                    System.out.println(CalculadoraImpuestos.calcularPago(empleado));
+                                if (empleado.getNombre().equalsIgnoreCase(nombre)){
+                                    aux=empleado;
+                                    System.out.println(CalculadoraImpuestos.calcularPago(empleado));}
                             }
                             if (aux == null) {
                                 throw new NotExistingName("Nombre no existe");
@@ -143,16 +151,17 @@ public class Main {
                         break;
                     }
 
-                    case 5:
+                    case 5:{
                         try {
                             ArrayList<Empleado> emp = e.getPlanilla();
-                            System.out.println("Ingrese el nombre del empleado que desea saber su sueldo liquido");
+                            System.out.println("Ingrese el nombre del empleado para conocer sus descuentos de ISS,AFP Y RENTA");
                             String nombre = scan.nextLine();
                             Empleado aux = null;
 
                             for (Empleado empleado : emp) {
-                                if (empleado.getNombre().equalsIgnoreCase(nombre))
-                                    System.out.println(CalculadoraImpuestos.calcularPago(empleado));
+                                if (empleado.getNombre().equalsIgnoreCase(nombre)){
+                                    aux=empleado;
+                                    System.out.println(CalculadoraImpuestos.mostrarTotales(empleado));}
                             }
                             if (aux == null) {
                                 throw new NotExistingName("Nombre no existe");
@@ -161,7 +170,7 @@ public class Main {
                             System.out.println(ex.getMessage());
                         }
                         break;
-                }
+                }}
 
             } while (op != 0);
 
